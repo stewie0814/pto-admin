@@ -1,8 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UsersComponent } from './users/users.component';
+import { UsersListComponent } from './users/users-list/users-list.component';
+import { UsersEditComponent } from './users/users-edit/users-edit.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full'}
+  { path: '', redirectTo: '/', pathMatch: 'full'},
+  { path: 'users', component: UsersComponent, children: [
+    { path: 'users-list', component: UsersListComponent },
+    { path: 'new', component: UsersEditComponent },
+    { path: ':id/edit', component: UsersEditComponent }
+  ]}
+
 ];
 
 @NgModule({
