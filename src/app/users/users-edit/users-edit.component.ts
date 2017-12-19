@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-users-edit',
@@ -13,7 +14,8 @@ export class UsersEditComponent implements OnInit {
   isEditing: boolean = false;
 
   constructor(private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private usersService: UsersService) { }
 
   ngOnInit() {
     this.route.params
@@ -37,7 +39,6 @@ export class UsersEditComponent implements OnInit {
       // STuff for when we're editing a user
     }
 
-    console.log(this.userForm);
     this.userForm = new FormGroup({
       name: new FormControl(name, Validators.required),
       firstLastName: new FormControl(firstLastName, Validators.required),
@@ -45,11 +46,18 @@ export class UsersEditComponent implements OnInit {
       joinDate: new FormControl(joinDate, []),
       teamId: new FormControl(teamId, [])
     });
-    console.log(this.userForm);
   }
 
   onUserSubmit() {
-    console.log(this.userForm);
+    this.usersService.addUser(this.userForm.value)
+  }
+
+  onFetchData() {
+    console.log(this.usersService.getUsers());
+    this.usersService.fetchUsersFromService();
+    setTimeout( () => {
+      console.log(this.usersService.getUsers());
+    }, 2000);
   }
 
 }
