@@ -52,12 +52,4 @@ export class UsersEditComponent implements OnInit {
     this.usersService.addUser(this.userForm.value);
   }
 
-  onFetchData() {
-    console.log(this.usersService.getUsers());
-    this.usersService.fetchUsersFromService();
-    setTimeout( () => {
-      console.log(this.usersService.getUsers());
-    }, 2000);
-  }
-
 }
