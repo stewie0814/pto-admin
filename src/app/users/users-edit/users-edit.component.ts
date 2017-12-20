@@ -49,7 +49,7 @@ export class UsersEditComponent implements OnInit {
   }
 
   onUserSubmit() {
-    this.usersService.addUser(this.userForm.value)
+    this.usersService.addUser(this.userForm.value);
   }
 
   onFetchData() {
