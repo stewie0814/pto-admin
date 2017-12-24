@@ -3,12 +3,14 @@ import { User } from './user.model';
 import { Http, Response } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/Rx';
 
 @Injectable()
 export class UsersService {
   private users: User[] = [];
   usersChanged = new Subject<User[]>();
+  subscription: Subscription;
   userDataURL = 'https://pto-admin.firebaseio.com/users.json';
   constructor ( private http: Http ) {}
 
@@ -23,7 +25,23 @@ export class UsersService {
   addUser (user: User) {
     this.users.push(user);
     this.usersChanged.next(this.users.slice());
-    this.saveUsersToService()
+    this.callSaveUsersService();
+  }
+
+  updateUser (index: number, user: User) {
+    this.users[index] = user;
+    this.usersChanged.next(this.users.slice());
+    this.callSaveUsersService();
+  }
+
+  deleteUser (index: number) {
+    this.users.splice(index, 1);
+    this.usersChanged.next(this.users.slice());
+    this.callSaveUsersService();
+  }
+
+  callSaveUsersService () {
+    this.subscription = this.saveUsersToService()
       .subscribe(
         (response) => console.log(response),
         (error) => console.log(error)

@@ -12,6 +12,7 @@ import { UsersEditComponent } from './users/users-edit/users-edit.component';
 
 // Services
 import { UsersService } from './users/users.service';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UsersService } from './users/users.service';
     HeaderComponent,
     UsersComponent,
     UsersListComponent,
-    UsersEditComponent
+    UsersEditComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -14,18 +14,22 @@ export class UsersEditComponent implements OnInit {
   isEditing: boolean = false;
 
   constructor(private router: Router,
-              private route: ActivatedRoute,
+              private activatedRoute: ActivatedRoute,
               private usersService: UsersService) { }
 
   ngOnInit() {
-    this.route.params
-      .subscribe(
-        (params: Params) => {
-          this.id = +params['id'],
-          this.isEditing = params['id'] != null,
-          this.initForm();
-        }
-      )
+    if (this.usersService.getUsers().length <= 0) {
+      this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+    } else {
+      this.activatedRoute.params
+        .subscribe(
+          (params: Params) => {
+            this.id = +params['id'],
+            this.isEditing = params['id'] != null,
+            this.initForm();
+          }
+        );
+    }
   }
 
   initForm() {
@@ -36,7 +40,13 @@ export class UsersEditComponent implements OnInit {
     let teamId = 0;
 
     if (this.isEditing) {
-      // STuff for when we're editing a user
+      // Stuff for when we're editing a user
+      const tempUser = this.usersService.getUser(this.id);
+      name = tempUser.name;
+      firstLastName = tempUser.firstLastName;
+      secondLastName = tempUser.secondLastName;
+      joinDate = tempUser.joinDate;
+      teamId = tempUser.teamId;
     }
 
     this.userForm = new FormGroup({
@@ -49,7 +59,11 @@ export class UsersEditComponent implements OnInit {
   }
 
   onUserSubmit() {
-    this.usersService.addUser(this.userForm.value);
+    if (this.isEditing) {
+      this.usersService.updateUser(this.id, this.userForm.value);
+    } else {
+      this.usersService.addUser(this.userForm.value);
+    }
   }
 
 }
