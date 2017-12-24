@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UsersService } from '../users.service';
 import { Subscription } from 'rxjs/Subscription';
 import { User } from '../user.model';
@@ -8,7 +8,7 @@ import { User } from '../user.model';
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.css']
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   users: User[] = [];
 
@@ -22,6 +22,10 @@ export class UsersListComponent implements OnInit {
     );
 
     this.usersService.fetchUsersFromService();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

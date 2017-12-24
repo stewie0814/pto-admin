@@ -12,9 +12,6 @@ export class UserDetailComponent implements OnInit {
   user: User = new User('', '', '', '', 0);
   id: number;
 
-  asyncUser = new Promise((resolve, reject) => {
-  })
-
   constructor(private usersService: UsersService,
               private router: Router,
               private activatedRoute: ActivatedRoute) { }
