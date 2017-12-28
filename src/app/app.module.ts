@@ -13,6 +13,9 @@ import { UsersEditComponent } from './users/users-edit/users-edit.component';
 // Services
 import { UsersService } from './users/users.service';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { TeamsComponent } from './teams/teams.component';
+import { TeamsListComponent } from './teams/teams-list/teams-list.component';
+import { TeamsService } from './teams/teams.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
     UsersComponent,
     UsersListComponent,
     UsersEditComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    TeamsComponent,
+    TeamsListComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
     HttpModule
   ],
   providers: [
-    UsersService
+    UsersService,
+    TeamsService
   ],
   bootstrap: [AppComponent]
 })

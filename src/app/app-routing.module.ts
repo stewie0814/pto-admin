@@ -4,6 +4,7 @@ import { UsersComponent } from './users/users.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { UsersEditComponent } from './users/users-edit/users-edit.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { TeamsComponent } from './teams/teams.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full'},
@@ -12,8 +13,8 @@ const appRoutes: Routes = [
     { path: 'new', component: UsersEditComponent },
     { path: ":id", component: UserDetailComponent },
     { path: ':id/edit', component: UsersEditComponent }
-  ]}
-
+  ]},
+  { path: 'teams', component: TeamsComponent }
 ];
 
 @NgModule({
