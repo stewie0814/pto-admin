@@ -1,10 +1,10 @@
 export class Team {
-  public teamId: number = 0;
+  public id: string = '';
   public name: string = '';
   public adminId: number = 0;
 
-  constructor (teamId: number, name: string, adminId: number) {
-    this.teamId = teamId;
+  constructor (id: string, name: string, adminId: number) {
+    this.id = id;
     this.name = name;
     this.adminId = adminId;
   }

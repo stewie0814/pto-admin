@@ -19,16 +19,16 @@ export class TeamsService {
     return this.teams.slice();
   }
 
-  getTeam(teamId: number) {
+  getTeam(id: string) {
     let result = this.teams.find( (team) => {
-      return team.teamId === teamId;
+      return team.id === id;
     });
 
     return result;
   }
 
-  findTeamIndex (teamId: number) {
-    return this.teams.indexOf(this.getTeam(teamId));
+  findTeamIndex (id: string) {
+    return this.teams.indexOf(this.getTeam(id));
   }
 
   addTeam (team: Team) {
@@ -36,13 +36,13 @@ export class TeamsService {
     this.teamsChanged.next(this.teams.slice());
   }
 
-  updateTeam (teamId: number, team: Team) {
-    this.teams[this.findTeamIndex(teamId)] = team;
+  updateTeam (id: string, team: Team) {
+    this.teams[this.findTeamIndex(id)] = team;
     this.teamsChanged.next(this.teams.slice());
   }
 
-  deleteTeam (teamId: number) {
-    this.teams.splice(this.findTeamIndex(teamId), 1);
+  deleteTeam (id: string) {
+    this.teams.splice(this.findTeamIndex(id), 1);
     this.teamsChanged.next(this.teams.slice());
   }
 }
