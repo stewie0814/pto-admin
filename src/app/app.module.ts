@@ -16,6 +16,7 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { TeamsComponent } from './teams/teams.component';
 import { TeamsListComponent } from './teams/teams-list/teams-list.component';
 import { TeamsService } from './teams/teams.service';
+import { TeamEditComponent } from './teams/team-edit/team-edit.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TeamsService } from './teams/teams.service';
     UsersEditComponent,
     UserDetailComponent,
     TeamsComponent,
-    TeamsListComponent
+    TeamsListComponent,
+    TeamEditComponent
   ],
   imports: [
     BrowserModule,

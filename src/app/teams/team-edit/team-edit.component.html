@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="teamForm" (ngSubmit)="onTeamSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <h2>Teams!</h2>
+          <div class="row">
+            <div class="col-xs-12">
+              <label for="teamName">Team Name</label>
+              <input type="text" id="teamName" formControl="teamName" class="form-control" />
+            </div>
+          </div>
+
+          <br>
+          <div class="row">
+            <div class="col-xs-12">
+              <button class="btn btn-danger">Clear</button>
+              <button class="btn btn-success">Save</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
