@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-employees',
+  templateUrl: './employees.component.html',
+  styleUrls: ['./employees.component.css']
 })
-export class UsersComponent implements OnInit {
+export class EmployeesComponent implements OnInit {
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute) { }
@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
   }
 
-  onAddUserButtonClicked() {
+  onAddEmployeeButtonClicked() {
     this.router.navigate(['new'], {relativeTo: this.activatedRoute});
   }
 

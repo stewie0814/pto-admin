@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { UsersService } from '../users.service';
+import { EmployeesService } from '../employees.service';
 
 @Component({
-  selector: 'app-users-edit',
-  templateUrl: './users-edit.component.html',
-  styleUrls: ['./users-edit.component.css']
+  selector: 'app-employees-edit',
+  templateUrl: './employees-edit.component.html',
+  styleUrls: ['./employees-edit.component.css']
 })
-export class UsersEditComponent implements OnInit {
+export class EmployeesEditComponent implements OnInit {
   id: number;
-  userForm: FormGroup;
+  employeeForm: FormGroup;
   isEditing: boolean = false;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private usersService: UsersService) { }
+              private employeesService: EmployeesService) { }
 
   ngOnInit() {
-    if (this.usersService.getUsers().length <= 0) {
+    if (this.employeesService.getEmployees().length <= 0) {
       this.router.navigate(['../'], { relativeTo: this.activatedRoute });
     } else {
       this.activatedRoute.params
@@ -40,16 +40,16 @@ export class UsersEditComponent implements OnInit {
     let teamId = 0;
 
     if (this.isEditing) {
-      // Stuff for when we're editing a user
-      const tempUser = this.usersService.getUser(this.id);
-      name = tempUser.name;
-      firstLastName = tempUser.firstLastName;
-      secondLastName = tempUser.secondLastName;
-      joinDate = tempUser.joinDate;
-      teamId = tempUser.teamId;
+      // Stuff for when we're editing a employee
+      const tempEmployee = this.employeesService.getEmployee(this.id);
+      name = tempEmployee.name;
+      firstLastName = tempEmployee.firstLastName;
+      secondLastName = tempEmployee.secondLastName;
+      joinDate = tempEmployee.joinDate;
+      teamId = tempEmployee.teamId;
     }
 
-    this.userForm = new FormGroup({
+    this.employeeForm = new FormGroup({
       name: new FormControl(name, Validators.required),
       firstLastName: new FormControl(firstLastName, Validators.required),
       secondLastName: new FormControl(secondLastName, Validators.required),
@@ -58,11 +58,11 @@ export class UsersEditComponent implements OnInit {
     });
   }
 
-  onUserSubmit() {
+  onEmployeeSubmit() {
     if (this.isEditing) {
-      this.usersService.updateUser(this.id, this.userForm.value);
+      this.employeesService.updateEmployee(this.id, this.employeeForm.value);
     } else {
-      this.usersService.addUser(this.userForm.value);
+      this.employeesService.addEmployee(this.employeeForm.value);
     }
   }
 

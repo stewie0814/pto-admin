@@ -6,29 +6,22 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { UsersComponent } from './users/users.component';
-import { UsersListComponent } from './users/users-list/users-list.component';
-import { UsersEditComponent } from './users/users-edit/users-edit.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { EmployeesListComponent } from './employees/employees-list/employees-list.component';
+import { EmployeesEditComponent } from './employees/employees-edit/employees-edit.component';
 
 // Services
-import { UsersService } from './users/users.service';
-import { UserDetailComponent } from './users/user-detail/user-detail.component';
-import { TeamsComponent } from './teams/teams.component';
-import { TeamsListComponent } from './teams/teams-list/teams-list.component';
-import { TeamsService } from './teams/teams.service';
-import { TeamEditComponent } from './teams/team-edit/team-edit.component';
+import { EmployeesService } from './employees/employees.service';
+import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    UsersComponent,
-    UsersListComponent,
-    UsersEditComponent,
-    UserDetailComponent,
-    TeamsComponent,
-    TeamsListComponent,
-    TeamEditComponent
+    EmployeesComponent,
+    EmployeesListComponent,
+    EmployeesEditComponent,
+    EmployeeDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -38,8 +31,7 @@ import { TeamEditComponent } from './teams/team-edit/team-edit.component';
     HttpModule
   ],
   providers: [
-    UsersService,
-    TeamsService
+    EmployeesService
   ],
   bootstrap: [AppComponent]
 })

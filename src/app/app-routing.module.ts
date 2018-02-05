@@ -1,25 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UsersComponent } from './users/users.component';
-import { UsersListComponent } from './users/users-list/users-list.component';
-import { UsersEditComponent } from './users/users-edit/users-edit.component';
-import { UserDetailComponent } from './users/user-detail/user-detail.component';
-import { TeamsComponent } from './teams/teams.component';
-import { TeamEditComponent } from './teams/team-edit/team-edit.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { EmployeesListComponent } from './employees/employees-list/employees-list.component';
+import { EmployeesEditComponent } from './employees/employees-edit/employees-edit.component';
+import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full'},
-  { path: 'users', component: UsersComponent, children: [
-    { path: 'users-list', component: UsersListComponent },
-    { path: 'new', component: UsersEditComponent },
-    { path: ":id", component: UserDetailComponent },
-    { path: ':id/edit', component: UsersEditComponent }
-  ]},
-  { path: 'teams', component: TeamsComponent, children: [
-    { path: 'new', component: TeamEditComponent },
-    { path: ':id', component: TeamEditComponent },
-    { path: ':id/edit', component: TeamEditComponent }
-  ] }
+  { path: 'employees', component: EmployeesComponent, children: [
+    { path: 'employees-list', component: EmployeesListComponent },
+    { path: 'new', component: EmployeesEditComponent },
+    { path: ":id", component: EmployeeDetailComponent },
+    { path: ':id/edit', component: EmployeesEditComponent }
+  ]}
 ];
 
 @NgModule({

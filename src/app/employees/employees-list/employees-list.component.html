@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-xs-12">
 
-    <div class="row" *ngFor="let user of users; let i = index">
+    <div class="row" *ngFor="let employee of employees; let i = index">
       <div class="col-xs-10">
         <a [routerLink]="i" routerLinkActive="active" style="cursor:pointer" class="list-group-item clearfix">
           <div class="pull-left">
-            <p class="list-group-item-text">{{ user.name + ' ' + user.firstLastName }}</p>
+            <p class="list-group-item-text">{{ employee.name + ' ' + employee.firstLastName }}</p>
           </div>
         </a>
       </div>

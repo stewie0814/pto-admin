@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h2>{{ employee.name + ' ' + employee.firstLastName + ' ' + employee.secondLastName}}</h2>
+    <div class="row">
+      <div class="col-xs-12">
+        <p><strong>Join Date</strong>: {{ employee.joinDate }}</p>
+        <p><strong>Team</strong>: {{ employee.teamId }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">
+        <button class="btn btn-primary pull-left" (click)="onEditEmployee()">Edit Employee</button>
+        <button class="btn btn-danger pull-right" (click)="onDeleteEmployee()">Delete Employee</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-xs-12">
-    <form [formGroup]="userForm" (ngSubmit)="onUserSubmit()">
+    <form [formGroup]="employeeForm" (ngSubmit)="onEmployeeSubmit()">
       <div class="row">
         <div class="col-xs-12">
 
-          <h2 *ngIf="this.isEditing">Edit User</h2>
-          <h2 *ngIf="!this.isEditing">Add User</h2>
+          <h2 *ngIf="this.isEditing">Edit Employee</h2>
+          <h2 *ngIf="!this.isEditing">Add Employee</h2>
           <div class="row">
             <div class="col-xs-12">
                 <label for="name">Name</label>
@@ -66,7 +66,7 @@
           <div class="row">
             <div class="col-xs-12">
               <button class="btn btn-danger" type="reset">Clear</button>
-              <button class="btn btn-success" type="submit" [disabled]="userForm.invalid">Save</button>
+              <button class="btn btn-success" type="submit" [disabled]="employeeForm.invalid">Save</button>
             </div>
           </div>
 
