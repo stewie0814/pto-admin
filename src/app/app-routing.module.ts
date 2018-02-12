@@ -4,6 +4,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { EmployeesListComponent } from './employees/employees-list/employees-list.component';
 import { EmployeesEditComponent } from './employees/employees-edit/employees-edit.component';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
+import { CalendarModule } from 'angular-calendar';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full'},
@@ -16,7 +17,10 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(appRoutes)],
+  imports: [
+    RouterModule.forRoot(appRoutes),
+    CalendarModule
+  ],
   exports: [ RouterModule ]
 })
 
