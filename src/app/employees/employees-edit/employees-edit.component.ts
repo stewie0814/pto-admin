@@ -18,18 +18,14 @@ export class EmployeesEditComponent implements OnInit {
               private employeesService: EmployeesService) { }
 
   ngOnInit() {
-    if (this.employeesService.getEmployees().length <= 0) {
-      this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-    } else {
-      this.activatedRoute.params
-        .subscribe(
-          (params: Params) => {
-            this.id = +params['id'],
-            this.isEditing = params['id'] != null,
-            this.initForm();
-          }
-        );
-    }
+    this.activatedRoute.params
+      .subscribe(
+        (params: Params) => {
+          this.id = +params['id'],
+          this.isEditing = params['id'] != null,
+          this.initForm();
+        }
+      );
   }
 
   initForm() {
@@ -39,6 +35,7 @@ export class EmployeesEditComponent implements OnInit {
     let joinDate = '';
     let teamId = 0;
 
+    console.log(this.isEditing, this.employeeForm);
     if (this.isEditing) {
       // Stuff for when we're editing a employee
       const tempEmployee = this.employeesService.getEmployee(this.id);
@@ -61,9 +58,12 @@ export class EmployeesEditComponent implements OnInit {
   onEmployeeSubmit() {
     if (this.isEditing) {
       this.employeesService.updateEmployee(this.id, this.employeeForm.value);
+      this.router.navigate(['/employees/' + this.id]);
     } else {
       this.employeesService.addEmployee(this.employeeForm.value);
+      this.router.navigate(['../'], { relativeTo: this.activatedRoute});
     }
+
   }
 
 }

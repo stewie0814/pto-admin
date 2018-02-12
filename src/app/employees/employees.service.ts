@@ -61,8 +61,8 @@ export class EmployeesService {
   fetchEmployeesFromService () {
     return this.http.get(this.employeeDataURL)
       .map((response: Response) => {
-        const employees: Employee[] = response.json();
-        return employees;
+          const employees: Employee[] = response.json() || [];
+          return employees;
       })
       .subscribe(
         (employees: Employee[]) => {
