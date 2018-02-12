@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { CalendarModule } from 'angular-calendar';
+import { CommonModule } from '@angular/common';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalendarUtilsModule } from './calendar-utils/module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -13,6 +17,7 @@ import { EmployeesEditComponent } from './employees/employees-edit/employees-edi
 // Services
 import { EmployeesService } from './employees/employees.service';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +26,18 @@ import { EmployeeDetailComponent } from './employees/employee-detail/employee-de
     EmployeesComponent,
     EmployeesListComponent,
     EmployeesEditComponent,
-    EmployeeDetailComponent
+    EmployeeDetailComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    CalendarModule.forRoot(),
+    HttpModule,
+    NgbModalModule.forRoot(),
+    CalendarUtilsModule
   ],
   providers: [
     EmployeesService
