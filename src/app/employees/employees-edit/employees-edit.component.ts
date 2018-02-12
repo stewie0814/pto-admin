@@ -32,8 +32,6 @@ export class EmployeesEditComponent implements OnInit {
     let name = '';
     let firstLastName = '';
     let secondLastName = '';
-    let joinDate = '';
-    let teamId = 0;
 
     console.log(this.isEditing, this.employeeForm);
     if (this.isEditing) {
@@ -42,16 +40,12 @@ export class EmployeesEditComponent implements OnInit {
       name = tempEmployee.name;
       firstLastName = tempEmployee.firstLastName;
       secondLastName = tempEmployee.secondLastName;
-      joinDate = tempEmployee.joinDate;
-      teamId = tempEmployee.teamId;
     }
 
     this.employeeForm = new FormGroup({
       name: new FormControl(name, Validators.required),
       firstLastName: new FormControl(firstLastName, Validators.required),
-      secondLastName: new FormControl(secondLastName, Validators.required),
-      joinDate: new FormControl(joinDate, []),
-      teamId: new FormControl(teamId, [])
+      secondLastName: new FormControl(secondLastName, Validators.required)
     });
   }
 

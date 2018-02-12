@@ -40,33 +40,11 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-xs-12">
-                <label for="joinDate">Join Date</label>
-                <input type="text"
-                name="joinDate"
-                id="joinDate"
-                formControlName="joinDate"
-                class="form-control">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-xs-12">
-                <label for="teamId">Team</label>
-                <input type="text"
-                name="teamId"
-                id="teamId"
-                formControlName="teamId"
-                class="form-control">
-            </div>
-          </div>
-
           <br>
           <div class="row">
             <div class="col-xs-12">
-              <button class="btn btn-danger" type="reset">Clear</button>
-              <button class="btn btn-success" type="submit" [disabled]="employeeForm.invalid">Save</button>
+              <button class="btn btn-danger pull-left" type="reset">Clear</button>
+              <button class="btn btn-success pull-right" type="submit" [disabled]="employeeForm.invalid">Save</button>
             </div>
           </div>
 
