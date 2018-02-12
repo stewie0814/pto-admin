@@ -7,6 +7,8 @@ import { CalendarModule } from 'angular-calendar';
 import { CommonModule } from '@angular/common';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarUtilsModule } from './calendar-utils/module';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -37,7 +39,9 @@ import { CalendarComponent } from './calendar/calendar.component';
     CalendarModule.forRoot(),
     HttpModule,
     NgbModalModule.forRoot(),
-    CalendarUtilsModule
+    CalendarUtilsModule,
+    AngularFontAwesomeModule,
+    BrowserAnimationsModule
   ],
   providers: [
     EmployeesService
