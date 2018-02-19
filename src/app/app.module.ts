@@ -20,6 +20,7 @@ import { EmployeesEditComponent } from './employees/employees-edit/employees-edi
 import { EmployeesService } from './employees/employees.service';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { EventsComponent } from './calendar/events/events.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     EmployeesListComponent,
     EmployeesEditComponent,
     EmployeeDetailComponent,
-    CalendarComponent
+    CalendarComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,

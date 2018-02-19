@@ -43,16 +43,28 @@ export const DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR: any = {
         </div>
       </div>
     </form>
-    <ngb-timepicker
-      [(ngModel)]="timeStruct"
-      (ngModelChange)="updateTime()"
-      [meridian]="true">
-    </ngb-timepicker>
   `,
   styles: [
     `
     .form-group {
       width: 100%;
+    }
+
+    .input-group-text {
+      display: flex;
+      webkit-box-align: center;
+      align-items: center;
+      padding: 0.375rem 0.75rem;
+      margin-bottom: 0;
+      font-size: 2rem;
+      line-height: 1.5;
+      color: #495057;
+      text-align: center;
+      white-space: nowrap;
+      background-color: #e9ecef;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      box-sizing:border-box;
     }
   `
   ],

@@ -5,6 +5,7 @@ import { EmployeesListComponent } from './employees/employees-list/employees-lis
 import { EmployeesEditComponent } from './employees/employees-edit/employees-edit.component';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { EventsComponent } from './calendar/events/events.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full'},
@@ -14,7 +15,8 @@ const appRoutes: Routes = [
     { path: ":id", component: EmployeeDetailComponent },
     { path: ':id/edit', component: EmployeesEditComponent }
   ]},
-  { path: 'calendar', component: CalendarComponent }
+  { path: 'calendar', component: CalendarComponent },
+  { path: 'events', component: EventsComponent }
 ];
 
 @NgModule({
