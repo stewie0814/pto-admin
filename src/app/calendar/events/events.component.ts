@@ -2,6 +2,14 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { Event } from './event.model';
+import { EventsService } from './events.service';
+
+import { Employee } from '../../employees/employee.model';
+import { EmployeesService } from '../../employees/employees.service';
+
+import { Subscription } from 'rxjs/Subscription';
+
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -47,7 +55,11 @@ export class EventsComponent implements OnInit {
     event: CalendarEvent
   };
 
-  events: CalendarEvent[] = [];
+  employeeSubscription: Subscription;
+  eventsSubscription: Subscription;
+  events: Event[] = [];
+  calendarEvents: CalendarEvent[] = [];
+  employees: Employee[] = [];
 
   actions: CalendarEventAction[] = [
     {
@@ -59,7 +71,7 @@ export class EventsComponent implements OnInit {
     {
       label: '<i class="fa fa-fw fa-times"></i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
+        this.calendarEvents = this.calendarEvents.filter(iEvent => iEvent !== event);
         this.handleEvent('Deleted', event);
       }
     }
@@ -67,7 +79,10 @@ export class EventsComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
-  constructor(private modal: NgbModal) {}
+  constructor(private eventsService: EventsService,
+              private employeesService: EmployeesService,
+              private modal: NgbModal) {
+  }
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
@@ -75,10 +90,26 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.employeeSubscription = this.employeesService.employeesChanged.subscribe(
+      (employees: Employee[]) => {
+        this.employees = employees;
+      }
+    );
+
+    this.employeesService.fetchEmployeesFromService();
+
+    this.eventsSubscription = this.eventsService.eventsChanged.subscribe(
+      (events: Event[]) => {
+        this.events = events;
+        this.calendarEvents = this.eventsService.transformToCalendarEvent(this.events);
+      }
+    );
+
+    this.eventsService.fetchEventsFromService();
   }
 
   addEvent(): void {
-    this.events.push({
+    this.calendarEvents.push({
       title: 'New event',
       start: startOfDay(new Date()),
       end: endOfDay(new Date()),

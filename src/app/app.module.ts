@@ -21,6 +21,7 @@ import { EmployeesService } from './employees/employees.service';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { EventsComponent } from './calendar/events/events.component';
+import { EventsService } from './calendar/events/events.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { EventsComponent } from './calendar/events/events.component';
     BrowserAnimationsModule
   ],
   providers: [
-    EmployeesService
+    EmployeesService,
+    EventsService
   ],
   bootstrap: [AppComponent]
 })

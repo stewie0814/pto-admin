@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12">
     <h3>
-      Edit events
+      Edit calendarEvents
       <button
         class="btn btn-primary pull-right"
         (click)="addEvent()">
@@ -25,13 +25,13 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let event of events; let index = index">
+        <tr *ngFor="let event of calendarEvents; let index = index">
           <td>
-            <input type="text"
-                   class="form-control"
-                   [(ngModel)]="events.employee"
-                   (keyup)="refresh.next()"/>
-
+            <select [(ngModel)]="calendarEvents.employee" (change)="refresh.next()">
+              <option *ngFor="let employee of employees; let indx = index" [value]="employee.index">
+                {{ employee.name }} {{ employee.firstLastName }}
+              </option>
+            </select>
           </td>
           <td>
             <input
@@ -69,7 +69,7 @@
           <td>
             <button
               class="btn btn-danger"
-              (click)="events.splice(index, 1); refresh.next()">
+              (click)="calendarEvents.splice(index, 1); refresh.next()">
               Delete
             </button>
           </td>
