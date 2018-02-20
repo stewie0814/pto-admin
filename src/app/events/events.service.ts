@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../employees/employee.model';
-import { Event } from './event.model';
+import { Event } from './event.interface';
 import { Http, Response } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
@@ -43,6 +43,12 @@ export class EventsService {
     this.callSaveEventService();
   }
 
+  saveAllEvents(events: Event[]) {
+    this.events = events;
+    this.eventsChanged.next(this.events.slice());
+    this.callSaveEventService();
+  }
+
   callSaveEventService() {
     this.subscription = this.saveEventsToService()
       .subscribe(
@@ -80,27 +86,6 @@ export class EventsService {
   setEvents(events: Event[]) {
     this.events = events;
     this.eventsChanged.next(this.events.slice());
-  }
-
-  transformToCalendarEvent(events: Event[]) {
-    let calendarEvents: CalendarEvent[] = [];
-
-    events.forEach((event) => {
-      const color: any = {
-        primary: event.color['primary'],
-        secondary: event.color['secondary']
-      };
-      let calendarEvent: any = {
-        start: event.startDate,
-        end: event.endDate,
-        title: event.description,
-        color: color,
-        employee: event.employee
-      };
-      calendarEvents.push(calendarEvent);
-    });
-
-    return calendarEvents;
   }
 
 }

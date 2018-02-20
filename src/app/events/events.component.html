@@ -29,7 +29,7 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let event of calendarEvents; let index = index">
+        <tr *ngFor="let event of events; let index = index">
           <td>
             <select [(ngModel)]="event.employee" (change)="refresh.next()">
               <option *ngFor="let employee of employees; let indx = index" [value]="indx">
@@ -74,7 +74,7 @@
           <td>
             <button
               class="btn btn-danger"
-              (click)="calendarEvents.splice(index, 1); refresh.next()">
+              (click)="events.splice(index, 1); refresh.next()">
               Delete
             </button>
           </td>

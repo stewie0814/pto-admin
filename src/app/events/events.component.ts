@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { Event } from './event.model';
+import { Event } from './event.interface';
 import { EventsService } from './events.service';
 
 import { Employee } from '../employees/employee.model';
@@ -11,7 +11,6 @@ import { EmployeesService } from '../employees/employees.service';
 import { Subscription } from 'rxjs/Subscription';
 
 import {
-  CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent
 } from 'angular-calendar';
@@ -50,28 +49,22 @@ const colors: any = {
 export class EventsComponent implements OnInit {
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
-  modalData: {
-    action: string,
-    event: CalendarEvent
-  };
-
   employeeSubscription: Subscription;
   eventsSubscription: Subscription;
   events: Event[] = [];
-  calendarEvents: CalendarEvent[] = [];
   employees: Employee[] = [];
 
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fa fa-fw fa-pencil"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
+      onClick: ({ event }: { event: Event }): void => {
         this.handleEvent('Edited', event);
       }
     },
     {
       label: '<i class="fa fa-fw fa-times"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.calendarEvents = this.calendarEvents.filter(iEvent => iEvent !== event);
+      onClick: ({ event }: { event: Event }): void => {
+        this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Deleted', event);
       }
     }
@@ -84,8 +77,8 @@ export class EventsComponent implements OnInit {
               private modal: NgbModal) {
   }
 
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
+  handleEvent(action: string, event: Event): void {
+    //this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
@@ -97,12 +90,9 @@ export class EventsComponent implements OnInit {
     );
 
     this.employeesService.fetchEmployeesFromService();
-
     this.eventsSubscription = this.eventsService.eventsChanged.subscribe(
       (events: Event[]) => {
         this.events = events;
-        this.calendarEvents = this.eventsService.transformToCalendarEvent(this.events);
-        console.log(this.calendarEvents);
       }
     );
 
@@ -110,12 +100,13 @@ export class EventsComponent implements OnInit {
   }
 
   addEvent(): void {
-    this.calendarEvents.push({
+    this.events.push({
       title: 'New event',
       start: startOfDay(new Date()),
       end: endOfDay(new Date()),
       color: colors.red,
       draggable: true,
+      employee: 0,
       resizable: {
         beforeStart: true,
         afterEnd: true
@@ -125,6 +116,6 @@ export class EventsComponent implements OnInit {
   }
 
   onSaveEvents() {
-    this.eventsService.callSaveEventService();
+    this.eventsService.saveAllEvents(this.events);
   }
 }
