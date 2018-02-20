@@ -1,4 +1,4 @@
-import { Employee } from '../../employees/employee.model';
+import { Employee } from '../employees/employee.model';
 
 export class Event {
   public employee: Employee;

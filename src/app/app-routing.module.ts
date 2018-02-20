@@ -5,7 +5,7 @@ import { EmployeesListComponent } from './employees/employees-list/employees-lis
 import { EmployeesEditComponent } from './employees/employees-edit/employees-edit.component';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { EventsComponent } from './calendar/events/events.component';
+import { EventsComponent } from './events/events.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full'},

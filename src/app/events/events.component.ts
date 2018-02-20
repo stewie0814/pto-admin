@@ -5,8 +5,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Event } from './event.model';
 import { EventsService } from './events.service';
 
-import { Employee } from '../../employees/employee.model';
-import { EmployeesService } from '../../employees/employees.service';
+import { Employee } from '../employees/employee.model';
+import { EmployeesService } from '../employees/employees.service';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -121,5 +121,9 @@ export class EventsComponent implements OnInit {
       }
     });
     this.refresh.next();
+  }
+
+  onSaveEvents() {
+    this.eventsService.callSaveEventService();
   }
 }
