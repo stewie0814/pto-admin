@@ -84,7 +84,14 @@ export class EventsService {
   }
 
   setEvents(events: Event[]) {
-    this.events = events;
+    const newEvents: Event[] = [];
+    events.forEach((event) => {
+      let tmp: Event = event;
+      tmp.start = new Date(event.start);
+      tmp.end = new Date(event.end);
+      newEvents.push(tmp);
+    })
+    this.events = newEvents;
     this.eventsChanged.next(this.events.slice());
   }
 

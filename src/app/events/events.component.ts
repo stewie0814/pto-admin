@@ -78,7 +78,6 @@ export class EventsComponent implements OnInit {
   }
 
   handleEvent(action: string, event: Event): void {
-    //this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
@@ -88,14 +87,13 @@ export class EventsComponent implements OnInit {
         this.employees = employees;
       }
     );
-
     this.employeesService.fetchEmployeesFromService();
+
     this.eventsSubscription = this.eventsService.eventsChanged.subscribe(
       (events: Event[]) => {
         this.events = events;
       }
     );
-
     this.eventsService.fetchEventsFromService();
   }
 
