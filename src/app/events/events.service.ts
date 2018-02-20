@@ -87,14 +87,15 @@ export class EventsService {
 
     events.forEach((event) => {
       const color: any = {
-        primary: "#kjlsfd",
-        secondary: "#ljkfds"
+        primary: event.color['primary'],
+        secondary: event.color['secondary']
       };
       let calendarEvent: any = {
         start: event.startDate,
         end: event.endDate,
-        title: event.employee.name + ' ' + event.employee.firstLastName + ': ' + event.description,
-        color: color
+        title: event.description,
+        color: color,
+        employee: event.employee
       };
       calendarEvents.push(calendarEvent);
     });

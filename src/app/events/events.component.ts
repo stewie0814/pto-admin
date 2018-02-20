@@ -102,6 +102,7 @@ export class EventsComponent implements OnInit {
       (events: Event[]) => {
         this.events = events;
         this.calendarEvents = this.eventsService.transformToCalendarEvent(this.events);
+        console.log(this.calendarEvents);
       }
     );
 
