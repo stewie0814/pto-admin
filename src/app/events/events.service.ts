@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { CalendarEvent } from 'angular-calendar';
 import 'rxjs/Rx';
+import { map } from 'rxjs/operators/map';
 
 @Injectable()
 export class EventsService {
@@ -83,7 +84,22 @@ export class EventsService {
       );
   }
 
+  fetchEventsForCalendar() {
+    return this.http.get(this.eventDataURL)
+      .pipe(
+        map((response: Response) => {
+            const events:Event[] = response.json() || [];
+            return this.convertToCalendarEvent(events);
+        })
+      )
+  }
+
   setEvents(events: Event[]) {
+    this.events = this.convertToCalendarEvent(events);
+    this.eventsChanged.next(this.events.slice());
+  }
+
+  convertToCalendarEvent(events: Event[]) {
     const newEvents: Event[] = [];
     events.forEach((event) => {
       let tmp: Event = event;
@@ -91,8 +107,8 @@ export class EventsService {
       tmp.end = new Date(event.end);
       newEvents.push(tmp);
     })
-    this.events = newEvents;
-    this.eventsChanged.next(this.events.slice());
+
+    return newEvents;
   }
 
 }

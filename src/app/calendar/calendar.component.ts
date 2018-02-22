@@ -24,6 +24,7 @@ import {
 import { Event } from '../events/event.interface';
 import { Employee } from '../employees/employee.model';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 import { EventsService } from '../events/events.service';
 import { EmployeesService } from '../employees/employees.service';
 
@@ -80,6 +81,7 @@ export class CalendarComponent {
   refresh: Subject<any> = new Subject();
 
   events: Event[] = [];
+  events$: Observable<Event[]>;
   employees: Employee[] = [];
   eventsSubscription: Subscription;
   employeeSubscription: Subscription;
@@ -103,7 +105,8 @@ export class CalendarComponent {
         this.events = events;
       }
     );
-    this.eventsService.fetchEventsFromService();
+    //this.eventsService.fetchEventsFromService();
+    this.events$ = this.eventsService.fetchEventsForCalendar();
   }
 
   dayClicked({ date, events }: { date: Date; events: Event[] }): void {
