@@ -60,6 +60,7 @@ export class CalendarComponent {
   modalData: {
     action: string;
     event: Event;
+    employeeName: string;
   };
 
   actions: CalendarEventAction[] = [
@@ -124,8 +125,14 @@ export class CalendarComponent {
   }
 
   handleEvent(action: string, event: Event): void {
-    this.modalData = { event, action };
+    const employee = this.getEmployeeData(event);
+    let employeeName = employee.name + ' ' + employee.firstLastName;
+    this.modalData = { event, action, employeeName };
     this.modal.open(this.modalContent, { size: 'lg' });
+  }
+
+  getEmployeeData(event: Event) {
+    return this.employeesService.getEmployeeByUUID(event.employee);
   }
 
 }

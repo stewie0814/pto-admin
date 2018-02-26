@@ -22,7 +22,16 @@ export class EmployeesService {
     return this.employees[index];
   }
 
+  getEmployeeUUIDIndex(uuid: string) {
+    return this.employees.indexOf(this.employees.find(employee => employee.uuid === uuid));
+  }
+
+  getEmployeeByUUID(uuid: string) {
+    return this.employees[this.getEmployeeUUIDIndex(uuid)];
+  }
+
   addEmployee (employee: Employee) {
+    employee.uuid = this.generateUUID();
     this.employees.push(employee);
     this.employeesChanged.next(this.employees.slice());
     this.callSaveEmployeesService();
@@ -77,5 +86,14 @@ export class EmployeesService {
   setEmployees (employees: Employee[]) {
     this.employees = employees;
     this.employeesChanged.next(this.employees.slice());
+  }
+
+  generateUUID() {
+    return this.generateHash() + "-" + this.generateHash() + "-" +
+           this.generateHash() + "-" + this.generateHash();
+  }
+
+  generateHash() {
+    return Math.floor((1 + Math.random()) * 0x100000).toString(16).substring(1);
   }
 }

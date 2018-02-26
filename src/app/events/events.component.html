@@ -32,7 +32,7 @@
         <tr *ngFor="let event of events; let index = index">
           <td>
             <select [(ngModel)]="event.employee" (change)="refresh.next()">
-              <option *ngFor="let employee of employees; let indx = index" [value]="indx">
+              <option *ngFor="let employee of employees; let indx = index" [value]="employee.uuid">
                 {{ employee.name }} {{ employee.firstLastName }}
               </option>
             </select>

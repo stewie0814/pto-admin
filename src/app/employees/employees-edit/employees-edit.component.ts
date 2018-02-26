@@ -29,20 +29,22 @@ export class EmployeesEditComponent implements OnInit {
   }
 
   initForm() {
+    let uuid = '';
     let name = '';
     let firstLastName = '';
     let secondLastName = '';
 
-    console.log(this.isEditing, this.employeeForm);
     if (this.isEditing) {
       // Stuff for when we're editing a employee
       const tempEmployee = this.employeesService.getEmployee(this.id);
+      uuid = tempEmployee.uuid;
       name = tempEmployee.name;
       firstLastName = tempEmployee.firstLastName;
       secondLastName = tempEmployee.secondLastName;
     }
 
     this.employeeForm = new FormGroup({
+      uuid: new FormControl(uuid),
       name: new FormControl(name, Validators.required),
       firstLastName: new FormControl(firstLastName, Validators.required),
       secondLastName: new FormControl(secondLastName, Validators.required)

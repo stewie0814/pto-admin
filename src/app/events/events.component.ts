@@ -104,7 +104,7 @@ export class EventsComponent implements OnInit {
       end: endOfDay(new Date()),
       color: colors.red,
       draggable: true,
-      employee: 0,
+      employee: '',
       resizable: {
         beforeStart: true,
         afterEnd: true

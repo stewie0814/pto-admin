@@ -9,7 +9,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./employee-detail.component.css']
 })
 export class EmployeeDetailComponent implements OnInit {
-  employee: Employee = new Employee('', '', '');
+  employee: Employee = new Employee('', '', '', '');
   id: number;
 
   constructor(private employeesService: EmployeesService,
